@@ -125,3 +125,6 @@ curl -X POST http://localhost:5000/api/v1/ai \
 - If a provider fails or a key is missing, the app automatically tries the next provider.
 - If all providers fail, it returns a clear error response instead of crashing.
 - The API is intentionally simple and easy to extend for your own app or frontend integration.
+
+## License
+This project is open-source and available under the [MIT License](LICENSE)
