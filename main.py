@@ -11,6 +11,10 @@ app = Flask(__name__)
 def health():
     return jsonify({"status": "ok"})
 
+@app.get("/ping")
+def ping():
+    return "Automatic Ai FallBack Code is active and running"
+
 
 @app.route("/api/v1/ai", methods=["POST"])
 def ai():

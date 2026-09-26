@@ -8,9 +8,9 @@ prompt = {
 }
 
 
-ai = "http://192.168.1.140:5000/api/v1/ai"
+ai = "https://unlimited-free-ai.onrender.com/api/v1/ai"
 
-health = requests.get("http://192.168.1.140:5000/health")
+health = requests.get("https://unlimited-free-ai.onrender.com/health")
 
 # 1. Check if the request was successful (HTTP Status 200)
 if health.status_code == 200:
