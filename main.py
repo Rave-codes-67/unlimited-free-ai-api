@@ -7,6 +7,14 @@ from ai_script import generate_ai_response
 app = Flask(__name__)
 
 
+@app.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    return response
+
+
 @app.get("/health")
 def health():
     return jsonify({"status": "ok"})
@@ -16,8 +24,11 @@ def ping():
     return "Automatic Ai FallBack Code is active and running"
 
 
-@app.route("/api/v1/ai", methods=["POST"])
+@app.route("/api/v1/ai", methods=["POST", "OPTIONS"])
 def ai():
+    if request.method == "OPTIONS":
+        return "", 204
+
     data = request.get_json(silent=True) or {}
     required_fields = ["prompt", "context", "history", "system_command"]
     missing = [field for field in required_fields if field not in data]
